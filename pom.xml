@@ -1,0 +1,29 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.xstefanox.demo</groupId>
+    <artifactId>filestreaming</artifactId>
+    <version>SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <version>1.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.22</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
