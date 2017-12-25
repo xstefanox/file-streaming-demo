@@ -1,10 +1,11 @@
 package io.github.xstefanox.demo.filestreaming;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import io.github.xstefanox.demo.filestreaming.exception.FileProcessingException;
+import io.github.xstefanox.demo.filestreaming.processor.LoggingErrorListener;
+import io.github.xstefanox.demo.filestreaming.processor.LoggingFileProcessor;
+import io.github.xstefanox.demo.filestreaming.processor.LoggingLineProcessor;
+import io.github.xstefanox.demo.filestreaming.processor.RandomErrorLineProcessor;
 import java.nio.file.Paths;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -14,12 +15,20 @@ public class Main {
         throw new AssertionError("main class must not be instantiated");
     }
 
-    public static void main(final String... args) throws IOException {
+    public static void main(final String... args) throws FileProcessingException {
 
-        final Path path = Paths.get(System.getProperty("user.dir"), DATA_DIR, "test.txt.gz");
+        final String cwd = System.getProperty("user.dir");
+        final LoggingLineProcessor loggingLineProcessor = new LoggingLineProcessor();
+        final LoggingFileProcessor loggingFileProcessor1 = new LoggingFileProcessor(loggingLineProcessor);
 
-        try (final Stream<String> lines = GZIPFiles.isGZipped(path) ? GZIPFiles.lines(path) : Files.lines(path)) {
-            lines.forEach(System.out::println);
-        }
+        loggingFileProcessor1.process(Paths.get(cwd, DATA_DIR, "test.txt.gz"));
+        loggingFileProcessor1.process(Paths.get(cwd, DATA_DIR, "test.txt"));
+
+        final RandomErrorLineProcessor randomErrorLineProcessor = new RandomErrorLineProcessor();
+        final LoggingErrorListener loggingErrorListener = new LoggingErrorListener();
+        final LoggingFileProcessor loggingFileProcessor2 = new LoggingFileProcessor(randomErrorLineProcessor);
+        loggingFileProcessor2.registerErrorListener(loggingErrorListener);
+
+        loggingFileProcessor2.process(Paths.get(cwd, DATA_DIR, "test.txt.gz"));
     }
 }
