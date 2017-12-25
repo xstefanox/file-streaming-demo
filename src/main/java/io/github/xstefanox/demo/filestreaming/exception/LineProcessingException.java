@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 
 public class LineProcessingException extends Exception {
 
-    private final Line line;
+    private final transient Line line;
 
     public LineProcessingException(final Line line, final Exception cause) {
 

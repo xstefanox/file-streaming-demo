@@ -45,6 +45,7 @@ public final class GZIPFiles {
             throw new UncompressedFileException(path);
         }
 
+        @SuppressWarnings("squid:S2095")   // it is up to the caller to close this resource by closing the returned stream
         final BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
         return reader.lines().onClose(() -> {

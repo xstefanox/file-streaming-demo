@@ -1,6 +1,7 @@
 package io.github.xstefanox.demo.filestreaming.processor;
 
 import io.github.xstefanox.demo.filestreaming.GZIPFiles;
+import io.github.xstefanox.demo.filestreaming.LoggingFileLock;
 import io.github.xstefanox.demo.filestreaming.exception.FileProcessingException;
 import io.github.xstefanox.demo.filestreaming.exception.LineProcessingException;
 import io.github.xstefanox.demo.filestreaming.model.Line;
@@ -28,7 +29,8 @@ public abstract class AbstractFileProcessor implements FileProcessor {
     @Override
     public void process(final Path path) throws FileProcessingException {
 
-        try (final Stream<String> lines = GZIPFiles.isGZipped(path) ? GZIPFiles.lines(path) : Files.lines(path)) {
+        try (final @SuppressWarnings("unused") LoggingFileLock lock = new LoggingFileLock(path);
+             final Stream<String> lines = GZIPFiles.isGZipped(path) ? GZIPFiles.lines(path) : Files.lines(path)) {
 
             final AtomicInteger lineCounter = new AtomicInteger();
 
