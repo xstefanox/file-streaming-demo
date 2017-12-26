@@ -8,7 +8,7 @@ public class LineProcessingException extends Exception {
 
     private final transient Line line;
 
-    public LineProcessingException(final Line line, final Exception cause) {
+    public LineProcessingException(final Line line, final Throwable cause) {
 
         super("cannot process line " + line, cause);
 

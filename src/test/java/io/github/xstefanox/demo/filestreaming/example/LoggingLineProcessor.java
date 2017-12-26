@@ -1,7 +1,8 @@
-package io.github.xstefanox.demo.filestreaming.processor;
+package io.github.xstefanox.demo.filestreaming.example;
 
 import io.github.xstefanox.demo.filestreaming.exception.LineProcessingException;
 import io.github.xstefanox.demo.filestreaming.model.Line;
+import io.github.xstefanox.demo.filestreaming.processor.LineProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

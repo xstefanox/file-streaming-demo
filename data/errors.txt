@@ -1,0 +1,5 @@
+1	strange error: c9d1c4aa-9ef1-47d5-bb66-0026837640b6	line 1
+2	strange error: 7aa6a991-363c-4c3e-a5b5-7edccfbf5773	line 2
+1	strange error: ecab7115-2fa7-46d1-b0d4-0ba338bbdeb7	content 1
+1	strange error: 00e077d7-2999-493a-976c-eeae1dff7c95	content 1
+2	strange error: 17d34e3b-36d5-4643-baa5-258fa4d91127	content 2

@@ -1,4 +1,4 @@
-package io.github.xstefanox.demo.filestreaming.processor;
+package io.github.xstefanox.demo.filestreaming.listener;
 
 import io.github.xstefanox.demo.filestreaming.exception.LineProcessingException;
 
