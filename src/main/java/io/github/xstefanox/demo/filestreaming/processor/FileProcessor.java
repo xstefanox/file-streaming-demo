@@ -6,4 +6,8 @@ import org.apache.commons.vfs2.FileObject;
 public interface FileProcessor {
 
     void process(FileObject path) throws FileProcessingException;
+
+    static FileProcessorBuilder builder() {
+        return new FileProcessorBuilder();
+    }
 }

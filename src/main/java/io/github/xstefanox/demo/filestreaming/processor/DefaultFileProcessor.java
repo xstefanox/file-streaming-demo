@@ -5,7 +5,6 @@ import io.github.xstefanox.demo.filestreaming.exception.LineProcessingException;
 import io.github.xstefanox.demo.filestreaming.listener.ErrorListener;
 import io.github.xstefanox.demo.filestreaming.model.Line;
 import io.github.xstefanox.demo.filestreaming.util.FileObjectStreams;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -48,9 +47,11 @@ public class DefaultFileProcessor implements FileProcessor {
     @Override
     public void process(final FileObject path) throws FileProcessingException {
 
+        LOGGER.info("processing file {}", path);
+
         LOGGER.debug("creating executor thread pool, size {}", nThreads);
 
-        final ExecutorService executor = Executors.newFixedThreadPool(nThreads, new ProcessorThreadFactory("DefaultFileProcessor"));
+        final ExecutorService executor = Executors.newFixedThreadPool(nThreads, new ProcessorThreadFactory(DefaultFileProcessor.class.getSimpleName()));
 
         try (Stream<String> lines = FileObjectStreams.lines(path)) {
 
@@ -88,5 +89,7 @@ public class DefaultFileProcessor implements FileProcessor {
         } catch (FileSystemException e) {
             throw new FileProcessingException(path, e);
         }
+
+        LOGGER.info("processing file {} completed", path);
     }
 }
