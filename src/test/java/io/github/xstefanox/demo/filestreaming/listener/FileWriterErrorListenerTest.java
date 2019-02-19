@@ -29,7 +29,7 @@ public class FileWriterErrorListenerTest {
 
     private static final String EXCEPTION_MESSAGE = "EXCEPTION_MESSAGE";
 
-    private static final String EXPECTED_FILE_CONTENT = LINE_NUMBER + "\t" + EXCEPTION_MESSAGE + "\t" + LINE_CONTENT + "\n";
+    private static final String EXPECTED_FILE_CONTENT = LINE_NUMBER + "\t" + EXCEPTION_MESSAGE + "\t" + LINE_CONTENT + System.getProperty("line.separator");
 
     @Mock
     private FileObject fileObject;
